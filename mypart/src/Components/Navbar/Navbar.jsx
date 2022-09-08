@@ -1,6 +1,6 @@
 import React from "react";
 import "./Navbar.css"
-// import { Button, ButtonGroup } from '@chakra-ui/react'
+// import { Button } from '@chakra-ui/react'
 export const Navbar = () => {
   return (
     <div id="mck">
@@ -11,10 +11,10 @@ export const Navbar = () => {
       </div>
       <div>
         <button>Help</button>
-        <Button colorScheme='teal' variant='outline'>
-        GO TO TRACKER
-  </Button>
-        <button></button>
+        {/* <Button colorScheme='teal' variant='outline'>
+        
+  </Button> */}
+        <button>GO TO TRACKER</button>
       </div>
     </div>
   );

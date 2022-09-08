@@ -4,6 +4,7 @@ import { Features } from "./Components/FeaturesPage/Features";
 import { Timetracker } from "./Components/FeaturesPage/Timetracker";
 import { Timesheet } from "./Components/FeaturesPage/Timesheet";
 import { Invoicing } from "./Components/FeaturesPage/Invoicing";
+// import {Project} from "./Components/Projects/Projects.jsx"
 export default function App() {
   return (
     <div className="App">
@@ -16,7 +17,7 @@ export default function App() {
       <Timetracker />
       <Timesheet />
       <Invoicing />
-<Project/>
+{/* <Project/> */}
       <hr />
     </div>
   );
