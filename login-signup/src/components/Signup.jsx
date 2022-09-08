@@ -1,6 +1,43 @@
 import {Div,Inputdiv,Termdiv,Ordiv,Span , Button ,Input,Checkbox,TermSpan,ButtonImg,UlDive,Tring} from './Signup_style'
 import { LoginNav } from './loginnav';
+import { useNavigate } from 'react-router-dom';
+import React from 'react';
+const obj = {
+    email:"",
+    password:""
+}
 export const Signup = ()=>{
+     const [box, SetChheckbox] = React.useState(true);
+     const navigate = useNavigate();
+     const [data, setdata] = React.useState(obj);
+  const handlechange = (e)=>{
+    const {value,name} = e.target;
+    setdata((pre)=>({
+        ...pre,
+        [name]:value,
+    }))
+  }
+  const StoreSignup = ()=>{
+      if(data.email===""){
+        alert("Enter Email first");
+      }else if(data.password===""||data.password.length<8){
+        alert("choose password of length more than eight");
+      }
+      else if(box===false){
+        alert("please click check box to accept term conditions")
+      }else{http://localhost:3001/profile
+        fetch('',{
+           method:"POST",
+           body:JSON.stringify(data),
+           headers:{"content-type":"application/json"} 
+        }).then(()=>{
+            alert("signup sucsesfull");
+            navigate('/login');
+        })
+      }
+
+  }
+ const {email,password} = data;
     return<div>
         <LoginNav/>
         <Div>
@@ -14,13 +51,13 @@ export const Signup = ()=>{
        </Div>
        <Inputdiv>
         <h1>Sign up</h1>
-        <Input type="text" placeholder='Enter email'/>
-        <Input type="text" placeholder='Choose password'/>
+        <Input name='email' type="text" placeholder='Enter email' value={email} onChange={handlechange}/>
+        <Input name='password' type="text" placeholder='Choose password' value={password} onChange={handlechange}/>
         <Termdiv>
-            <Checkbox type="checkbox"/>
+            <Checkbox type="checkbox" checked = {box} onChange={()=>SetChheckbox(!box)}/>
             <p>I agree to the <TermSpan>Terms of Use</TermSpan></p>
         </Termdiv>
-        <Button color='white' bacground= "blue">CREATE FREE ACCOUNT</Button>
+        <Button color='white' bacground= "blue" onClick={StoreSignup}>CREATE FREE ACCOUNT</Button>
         <Ordiv>
            <hr />
            <Span>OR</Span>

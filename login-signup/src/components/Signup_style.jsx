@@ -34,7 +34,7 @@ const Button = styled.button`
  font-weight: 500;
  position:relative; //border
  cursor: pointer;
- border:0.3px solid #C6D2D9;
+ border:${({border}) => border==="none" ? "0.3px solid rgb(68 62 62)" : "0.3px solid #C6D2D9"};
  border-radius: 2px;
  background-color: ${({bacground}) => bacground==="blue" ? "#03a9f4" : bacground==="black" ? "rgb(68 62 62)" : "white"};
  cursor: pointer;
@@ -69,6 +69,40 @@ const Inputdiv = styled.div`
     font-size:20px;
     color:#333;
     font-weight: 500;
+  }
+  @media (min-width:0px) and (max-width:500px){
+    width:80%;   
+  }
+  @media (min-width:500px) and (max-width:900px){
+    width:50%;   
+  }
+`
+const Logininputdiv = styled.div`
+  width:30%;
+  display:flex;
+  flex-direction: column;
+  padding:20px 30px 30px 30px;
+  margin:auto;
+  margin-top:30px;
+  gap:15px;
+  Background-color:white;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  >h1{
+    font-size:20px;
+    color:#333;
+    font-weight: 500;
+  }
+  @media (min-width:0px) and (max-width:500px){
+    width:80%;   
+  }
+  @media (min-width:500px) and (max-width:900px){
+    width:50%;   
+  }
+  @media (min-width:900px) and (max-width:1100px){
+    width:45%;   
+  }
+  @media (min-width:1100px) and (max-width:1300px){
+    width:40%;   
   }
 `
 const  Termdiv = styled.div`
@@ -131,7 +165,7 @@ const UlDive = styled.div`
 display:flex;
 align-items:center;
 justify-content: center;
-margin-top:10px;
+margin-top:30px;
 color:#666666;
 gap:2px;
 `
@@ -141,8 +175,11 @@ const Tring = styled(TriangleDownIcon)`
 `
 const LoginPhotoDive = styled.div`
    display:grid;
-   grid-template-columns: 68% 32%;
+   grid-template-columns: 68% 35%;
    justify-content: center;
+  @media (min-width:0px) and (max-width:900px){
+    grid-template-columns: 1fr;
+  }
 `
 const LoginPagePhoto = styled.img`
 width:100%;
@@ -154,13 +191,18 @@ display:flex;
 align-items:center;
 justify-content: center;
 flex-direction: column;
-gap:30px;
+gap:20px;
 text-align: center;
 padding:30px 0px 30px 30px;
 &>*{
   text-align: center;
+  margin: 5px;
 },h1{
   color:white;
+},p{
+  width:90%;
+  font-size: 20px;
+  font-weight: 400;
 }
 `
 const Loginnewspan = styled.span`
@@ -171,4 +213,4 @@ const Loginnewspan = styled.span`
    Background-color:white;
   margin:auto;
 `
-export {Div,Inputdiv,Termdiv,Ordiv,Span,Button,Input,Checkbox,TermSpan,ButtonImg,UlDive,Tring,LoginPhotoDive,LoginSide,Loginnewspan,LoginPagePhoto};
+export {Div,Inputdiv,Termdiv,Ordiv,Span,Button,Input,Checkbox,TermSpan,ButtonImg,UlDive,Tring,LoginPhotoDive,LoginSide,Loginnewspan,LoginPagePhoto,Logininputdiv};
