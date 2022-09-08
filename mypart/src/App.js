@@ -8,13 +8,15 @@ export default function App() {
   return (
     <div className="App">
       <Navbar />
+      <br/>
+
       <Features />
       <br />
       <hr />
       <Timetracker />
       <Timesheet />
       <Invoicing />
-
+<Project/>
       <hr />
     </div>
   );

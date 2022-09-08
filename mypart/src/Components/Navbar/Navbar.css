@@ -1,17 +1,21 @@
-#mc>button{
+#mck>div:nth-child(2)>button:nth-child(1),#mck>div:nth-child(1)>button{
     border:none;
     background: none;
-    font-size: 18px;
+    font-size: 22px;
+    margin-left: 40px;
 }
-#mc>button:hover{
+#mck>div:nth-child(2)>button:nth-child(1):hover,#mck>div:nth-child(1)>button:hover{
     color:rgb(0, 215, 249);
     cursor: pointer;
 }
-#mc {
+#mck {
     display: flex;
     align-content: center;
     justify-content: space-evenly;
   }
-  
+  #mck>div:nth-child(1){
+    display:flex;
+    justify-content: space-between;
+  }
   
   
