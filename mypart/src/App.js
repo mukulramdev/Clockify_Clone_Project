@@ -1,9 +1,9 @@
 import './App.css';
 import { Navbar } from "./Components/Navbar/Navbar.jsx";
-import { Features } from "./Components/Features";
-import { Timetracker } from "./Components/Timetracker";
-import { Timesheet } from "./Components/Timesheet";
-import { Invoicing } from "./Components/Invoicing";
+import { Features } from "./Components/FeaturesPage/Features";
+import { Timetracker } from "./Components/FeaturesPage/Timetracker";
+import { Timesheet } from "./Components/FeaturesPage/Timesheet";
+import { Invoicing } from "./Components/FeaturesPage/Invoicing";
 export default function App() {
   return (
     <div className="App">
