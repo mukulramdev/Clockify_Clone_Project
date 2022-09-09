@@ -1,0 +1,35 @@
+#mc {
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+.cfhjkjvjk{
+  justify-content: center;
+}
+#mc>div>div:last-child{
+  margin: 5px 0px;
+}
+#fbut {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 10px;
+}
+#fbutt {
+  display: grid;
+  grid-template-columns: repeat(2, 100px);
+  gap: 10px;
+}
+#fbutt > button,
+#fbut > button {
+  background-color: rgba(0, 81, 71, 0.1);
+  color: #5a6b7b;
+  border: none;
+  height: 40px;
+  border-radius: 3px;
+}
+#fbutt > button:hover,
+#fbut > button:hover {
+  background-color: rgba(37, 7, 255, 0.6);
+  color: white;
+}
