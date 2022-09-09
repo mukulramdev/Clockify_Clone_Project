@@ -73,7 +73,7 @@ const Homepage = () => {
                     alt=""
                 /> : <SECONDPARTSC
                     src="https://clockify.me/assets/images/time-tracker-screenshot.svg"
-                    alt=""
+                    alt="s"
                 />
                 }
 
