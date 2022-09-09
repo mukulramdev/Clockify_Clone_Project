@@ -11,9 +11,7 @@ export const Navbar = () => {
       </div>
       <div>
         <button>Help</button>
-        {/* <Button colorScheme='teal' variant='outline'>
-        
-  </Button> */}
+      
         <button>GO TO TRACKER</button>
       </div>
     </div>
