@@ -30,7 +30,7 @@ const Button = styled.button`
  font-size:15px;
  color:${({color}) => color==="white" ? "white" : "#666666"};
  min-width: 7.143rem;
- font-family: inherit;
+
  font-weight: 500;
  position:relative; //border
  cursor: pointer;
@@ -44,7 +44,7 @@ const Button = styled.button`
  &>span{
     font-size:16px;
     color:#666666;
-    font-family: inherit;
+  
     font-weight: 500;
     background-color: white;
  }
@@ -140,6 +140,7 @@ const Ordiv = styled.div`
   &>hr{
     height:0.3px;
     Background-color:#C6D2D9;
+    margin:10px 0px;
     color:#C6D2D9;
   }
 `
@@ -157,7 +158,6 @@ const Input = styled.input`
  border:none;
  outline:0.3px solid #C6D2D9;
  font-size:15px;
- font-family: inherit;
  font-weight: 500;
  border-radius: 2px;
 `
@@ -175,10 +175,11 @@ const Tring = styled(TriangleDownIcon)`
 `
 const LoginPhotoDive = styled.div`
    display:grid;
-   grid-template-columns: 68% 35%;
+   width:100%;
+   grid-template-columns: 70% 30%;
    justify-content: center;
   @media (min-width:0px) and (max-width:900px){
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
   }
 `
 const LoginPagePhoto = styled.img`

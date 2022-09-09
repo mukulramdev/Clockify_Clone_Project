@@ -1,13 +1,30 @@
 import {Div,Inputdiv,Termdiv,Ordiv,Span , Button ,Input,Checkbox,TermSpan,ButtonImg,UlDive,Tring} from './Signup_style'
 import { LoginNav } from './loginnav';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import React from 'react';
+import { useToast,Spinner } from '@chakra-ui/react';
+import { Toggle } from '../Redux/Pagetracker/Action';
+import styled from 'styled-components';
+
+
+const Spindiv = styled.div`
+  display:flex;
+  align-items:center;
+  justify-content: center;
+`
 const obj = {
     email:"",
-    password:""
+    password:"",
+    Timer:[],
+    name:"NO Name"
 }
 export const Signup = ()=>{
+     const toast = useToast();
+     const dispath = useDispatch();
      const [box, SetChheckbox] = React.useState(true);
+     const [loding,Setloding] = React.useState(false);
      const navigate = useNavigate();
      const [data, setdata] = React.useState(obj);
   const handlechange = (e)=>{
@@ -25,20 +42,41 @@ export const Signup = ()=>{
       }
       else if(box===false){
         alert("please click check box to accept term conditions")
-      }else{http://localhost:3001/profile
-        fetch('',{
+      }else{
+        Setloding(true);
+        fetch('https://user-data-for-react.herokuapp.com/profile',{
            method:"POST",
            body:JSON.stringify(data),
            headers:{"content-type":"application/json"} 
         }).then(()=>{
-            alert("signup sucsesfull");
+          Setloding(false);
+          toast({
+            title: 'Account created.',
+            description: "We've created your account for you.",
+            status: 'success',
+            duration: 9000,
+            position: "top",
+            isClosable: true,
+          })
+          localStorage.setItem("pagedata",false);
+          dispath(Toggle(false))
             navigate('/login');
         })
       }
 
   }
  const {email,password} = data;
-    return<div>
+    return (
+    loding ? <Spindiv>
+      <h1>Your Account is being Created please wait</h1>
+      <Spinner
+    thickness='4px'
+    speed='0.65s'
+    emptyColor='gray.200'
+    color='blue.500'
+    size='xl'
+  /></Spindiv> :
+    <div>
         <LoginNav/>
         <Div>
        <div>Get started with Clockify</div>
@@ -78,5 +116,5 @@ export const Signup = ()=>{
         <TermSpan>Security</TermSpan>
         <TermSpan>Privacy</TermSpan>
        </UlDive>
-    </div>
+    </div>)
 }
