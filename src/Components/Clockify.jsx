@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "./Footer/Footer";
 import Homepage from "./Homepage";
 
 
@@ -8,6 +9,7 @@ function Clockify() {
   return (
    <div style={{textAlign: "center"}}>
    <Homepage />
+   <Footer />
    </div>
   );
 }
