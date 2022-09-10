@@ -1,4 +1,4 @@
-
+import styles from"./ComponentStyle.module.css"
 import React, { useState } from 'react';
 import {  TriangleDownIcon } from '@chakra-ui/icons'
 import {
@@ -24,24 +24,43 @@ import {TbCurrencyDollar} from "react-icons/tb";
 import {MdOutlineDashboardCustomize} from "react-icons/md"
 import{GrDocumentText} from "react-icons/gr"
 import { Link } from 'react-router-dom';
-
+import TodoList from './TodoList';
 
 
 const TrackerComponent = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
     const toggle = () => setIsOpen (!isOpen);
+    const [task,setTask] = useState("");
+    const [todos,setTodos] = useState([]);
+    const[submitStatus,setSubmitStatus] = useState(false);
+  
+    const changeHandler = e =>{
+      setTask(e.target.value)
+    }
+    const submitHandler = e =>{
+        e.preventDefault();
+        setSubmitStatus(true);
+        const newTodos = [...todos,task];
+        setTodos(newTodos);
+        setTask("");
+      }
+      const deleteHandler = (indexValue) =>{
+        const newTodos = todos.filter((todo,index) => index !== indexValue);
+        setTodos(newTodos);
+      }
+   
    
     return (
 
-        <div className="container" >
+        <div className={styles.container} >
 
         
-               <div className="top_section" style={{width : "100%",background:""}}>
-               <div className="blue"></div>
-                   <div style={{marginLeft:"0px"}} className="bars" >
+               <div className={styles.top_section} >
+               <div className={styles.blue}></div>
+                   <div style={{marginLeft:"0px"}} className={styles.bars} >
                        <FaBars onClick={toggle}/>
                    </div>
-                  <div className="userMenu">
+                  <div className={styles.userMenu}>
                    <Flex bg=""  minWidth='max-content' alignItems='center'  gap='2'>
  
 <Box p='10px' >
@@ -53,8 +72,8 @@ const TrackerComponent = ({children}) => {
 Harshini Usarthi's...
 </MenuButton>
 <MenuList>
-<MenuItem>Download</MenuItem>
-<MenuItem>Create a Copy</MenuItem>
+<MenuItem>Projects</MenuItem>
+<MenuItem>Dashboard</MenuItem>
 
 </MenuList>
 </Menu>
@@ -76,51 +95,51 @@ Harshini Usarthi's...
                     
                  
                </div>
-               <div className="bottomSec" style={{background:""}}>
-                <div className="blue"></div>
-               <div style={{background:"",width: isOpen ? "200px" : "63px"}} className="sidebar" >
+               <div className={styles.bottomSec} style={{background:""}}>
+                <div className={styles.blue}></div>
+               <div style={{background:"",width: isOpen ? "200px" : "63px"}} className={styles.sidebar} >
                {
  
                 <>
                    
-                     <div>  <Link to='/Tracker'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                           <div className="icon"><BsClock/></div>
-                           <div style={{display: isOpen ? "block" : "none"}} className="link_text">TIME TRACKER</div>
+                     <div>  <Link to='/Tracker'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                           <div className={styles.icon}><BsClock/></div>
+                           <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>TIME TRACKER</div>
                        </Link></div>
                      
-                       <div>  <Link to='/Calendar'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><VscCalendar/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">CALENDAR</div>
+                       <div>  <Link to='/Calendar'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><VscCalendar/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>CALENDAR</div>
                  </Link></div>
-                 <div>  <Link to='/Dashboard'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><MdOutlineDashboardCustomize/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">DASHBOARD</div>
+                 <div>  <Link to='/Dashboard'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><MdOutlineDashboardCustomize/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>DASHBOARD</div>
                  </Link></div>
-                 <div>  <Link to='/Reports'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><BsBarChartLine/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">REPORTS</div>
+                 <div>  <Link to='/Reports'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><BsBarChartLine/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>REPORTS</div>
                  </Link></div>
-                 <div>  <Link to='/Projects'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><GrDocumentText/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">PROJECTS</div>
+                 <div>  <Link to='/Projects'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><GrDocumentText/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>PROJECTS</div>
                  </Link></div>
-                 <div>  <Link to='/Teams'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><FiUsers/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">TEAM</div>
+                 <div>  <Link to='/Teams'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><FiUsers/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>TEAM</div>
                  </Link></div>
-                 <div>  <Link to='/Clients'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><HiOutlineUserCircle/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">CLIENTS</div>
+                 <div>  <Link to='/Clients'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><HiOutlineUserCircle/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>CLIENTS</div>
                  </Link></div>
-                 <div>  <Link to='/Tags'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><BsTag/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">TAGS</div>
+                 <div>  <Link to='/Tags'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><BsTag/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>TAGS</div>
                  </Link></div>
-      <div> <Link to='/Settings'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><FiSettings/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">SETTINGS</div>
+      <div> <Link to='/Settings'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><FiSettings/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>SETTINGS</div>
                  </Link></div>
-                 <div className="link"><button><IoIosArrowDown/></button></div>
+                 <div className={styles.link}><button><IoIosArrowDown/></button></div>
                 
                  </>
                  
@@ -129,12 +148,14 @@ Harshini Usarthi's...
               
               
         </div>
-        <div className="bottomRight">
-        <div className="boxes">
-            <div className="box1">
-                <input type="text" className="inputBox" placeholder="What are you working on?"/>
-                 <Button colorScheme='blue'  variant='' fontSize="13px" size="xs" mt="12px" ml='20px' borderRadius="5px" w='4%' color='#03A9F4'><AiOutlinePlusCircle/>+ Project</Button>
-</div>
+        <div className={styles.bottomRight} style={{background:"",width: isOpen ? "81%" : "91%"}}>
+        <div className={styles.boxes}>
+            <div className={styles.box1}>
+                <form onSubmit={submitHandler}>
+                <input type="text" value={task} onChange={changeHandler} className={styles.inputBox} placeholder="What are you working on?"/>
+                 <Button colorScheme='blue' type="submit"  variant='' fontSize="13px" size="xs" mt="0px" ml='20px' borderRadius="5px" w='4%' color='#03A9F4'><AiOutlinePlusCircle/>+ Project</Button>
+                 </form>
+</div>     
                 
             <div className="box2">
             <Center height='50px'>
@@ -160,23 +181,32 @@ Harshini Usarthi's...
                 
             </div>
         </div>
-        <Box border="1px solid #D3D3D3" width="30% " display="flex" flexDirection="column" justifyItems="baseline" ml='33%'>
- <Image  width="120px" ml='33%' src="https://app.clockify.me/assets/ui-icons/empty-tracker-icon.webp"/>
- <p style={{textAlign:'center',fontSize:'26px'}}  >
-    Let's start tracking
-  </p>
-  <p style={{textAlign:'center',color:'#999',marginTop:'20px',fontSize:'14px'}} >Install Clockify and track time anywhere</p>
-  <div className="iconBox">
-    <AiFillAndroid/>
-    <AiFillApple/>
-    <AiFillChrome/>
-    <AiFillWindows/>
-  </div>
-  <a href="" style={{textAlign:'center',color:'#999',marginBottom:'20px',fontSize:'14px'}}> 50+ Integrations</a>
-  <Box w='100%' borderTop='1px solid #d3d3d3'>
-    <Button  w='100%'padding='20px' color='#03A9F4' bg='white' size='sm' >Enable timesheet mode</Button>
-  </Box>
- </Box></div>
+
+<div className="diaplayCard" style={{display: submitStatus? 'none': 'flex'}}>
+<Box border="1px solid #D3D3D3" width="30%"  display="flex" flexDirection="column" justifyItems="baseline" ml='33%'>
+            <Image  width="120px" ml='33%' src="https://app.clockify.me/assets/ui-icons/empty-tracker-icon.webp"/>
+            <p style={{textAlign:'center',fontSize:'26px'}}  >
+               Let's start tracking
+             </p>
+             <p style={{textAlign:'center',color:'#999',marginTop:'20px',fontSize:'14px'}} >Install Clockify and track time anywhere</p>
+             <div className={styles.iconBox}>
+               <AiFillAndroid/>
+               <AiFillApple/>
+               <AiFillChrome/>
+               <AiFillWindows/>
+             </div>
+             <a  style={{textAlign:'center',color:'#999',marginBottom:'20px',fontSize:'14px'}}> 50+ Integrations</a>
+             <Box w='100%' borderTop='1px solid #d3d3d3'>
+               <Button  w='100%'padding='20px' color='#03A9F4' bg='white' size='sm' >Enable timesheet mode</Button>
+             </Box>
+            </Box>
+</div>
+<div className={styles.thisweek} style={{display: submitStatus? 'flex': 'none'}}>
+   This week
+</div>
+<TodoList todolist={todos} deleteHandler={deleteHandler}/>
+
+        </div>
         </div>
         </div>
        

@@ -1,11 +1,20 @@
-
+import styles from"./ComponentStyle.module.css"
 import React, { useState } from 'react';
 import {  TriangleDownIcon } from '@chakra-ui/icons'
+
 import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,Center,Divider,Icon,Avatar
+  MenuItem,Center,Divider,Icon,Table,Avatar,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
   
 } from '@chakra-ui/react'
 import { Flex, Spacer ,Box,Button,ButtonGroup,Image,} from '@chakra-ui/react'
@@ -13,7 +22,7 @@ import {  HiOutlineQuestionMarkCircle,HiOutlineUserCircle} from 'react-icons/hi'
 import {  TiBell} from 'react-icons/ti'
 import{VscCalendar} from 'react-icons/vsc'
 import {FiUsers,FiSettings} from 'react-icons/fi'
-import {IoIosArrowDown} from 'react-icons/io'
+import {IoIosArrowDown,IoIosArrowBack,IoIosArrowForward} from 'react-icons/io'
 import {FaBars} from 'react-icons/fa'
 
 import {BsTag, BsClock,BsBarChartLine} from "react-icons/bs"; 
@@ -30,12 +39,12 @@ const CalendarComponent = ({children}) => {
    
     return (
 
-        <div className="container" >
+        <div className={styles.container} >
 
         
-               <div className="top_section" style={{width : "100%",background:""}}>
-               <div className="blue"></div>
-                   <div style={{marginLeft:"0px"}} className="bars" >
+               <div className={styles.top_section} style={{width : "100%",background:""}}>
+               <div className={styles.blue}></div>
+                   <div style={{marginLeft:"0px"}} className={styles.bars} >
                        <FaBars onClick={toggle}/>
                    </div>
                   <div className="userMenu">
@@ -73,51 +82,51 @@ Harshini Usarthi's...
                     
                  
                </div>
-               <div className="bottomSec" style={{background:""}}>
-                <div className="blue"></div>
-               <div style={{background:"",width: isOpen ? "200px" : "63px"}} className="sidebar" >
+               <div className={styles.bottomSec} style={{background:""}}>
+                <div className={styles.blue}></div>
+               <div style={{background:"",width: isOpen ? "200px" : "63px"}} className={styles.sidebar} >
                {
  
                 <>
                    
-                     <div>  <Link to='/Tracker'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                           <div className="icon"><BsClock/></div>
-                           <div style={{display: isOpen ? "block" : "none"}} className="link_text">TIME TRACKER</div>
+                     <div>  <Link to='/Tracker'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                           <div className={styles.icon}><BsClock/></div>
+                           <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>TIME TRACKER</div>
                        </Link></div>
                      
-                       <div>  <Link to='/Calendar'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><VscCalendar/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">CALENDAR</div>
+                       <div>  <Link to='/Calendar'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><VscCalendar/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>CALENDAR</div>
                  </Link></div>
-                 <div>  <Link to='/Dashboard'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><MdOutlineDashboardCustomize/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">DASHBOARD</div>
+                 <div>  <Link to='/Dashboard'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><MdOutlineDashboardCustomize/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>DASHBOARD</div>
                  </Link></div>
-                 <div>  <Link to='/Reports'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><BsBarChartLine/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">REPORTS</div>
+                 <div>  <Link to='/Reports'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><BsBarChartLine/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>REPORTS</div>
                  </Link></div>
-                 <div>  <Link to='/Projects'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><GrDocumentText/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">PROJECTS</div>
+                 <div>  <Link to='/Projects'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><GrDocumentText/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>PROJECTS</div>
                  </Link></div>
-                 <div>  <Link to='/Teams'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><FiUsers/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">TEAM</div>
+                 <div>  <Link to='/Teams'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><FiUsers/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>TEAM</div>
                  </Link></div>
-                 <div>  <Link to='/Clients'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><HiOutlineUserCircle/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">CLIENTS</div>
+                 <div>  <Link to='/Clients'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><HiOutlineUserCircle/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>CLIENTS</div>
                  </Link></div>
-                 <div>  <Link to='/Tags'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><BsTag/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">TAGS</div>
+                 <div>  <Link to='/Tags'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><BsTag/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>TAGS</div>
                  </Link></div>
-      <div> <Link to='/Settings'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><FiSettings/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">SETTINGS</div>
+      <div> <Link to='/Settings'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><FiSettings/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>SETTINGS</div>
                  </Link></div>
-                 <div className="link"><button><IoIosArrowDown/></button></div>
+                 <div className={styles.link}><button><IoIosArrowDown/></button></div>
                 
                  </>
                  
@@ -126,8 +135,145 @@ Harshini Usarthi's...
               
               
         </div>
-        <div className="bottomRight">
+        <div className={styles.bottomRight}>
+           <div className={styles.btnHead}>
+               <div className={styles.btnHead1}>
+                <Button className={styles.btnHeadgrp}>Calendar</Button>
+                <Button className={styles.btnHeadgrp}>Week</Button>
+                <Button className={styles.btnHeadgrp}>Day</Button>
+               </div>
+               <div className={styles.btnHead2}>
+               <Button className={styles.btnHeadgrp}><FiSettings/></Button>
+               <Button className={styles.btnHeadgrp}>Teammates</Button>
+               <Button className={styles.btnHeadgrp}><VscCalendar/>This week</Button>
+               <Button className={styles.btnHeadgrp}><IoIosArrowBack/></Button>
+               <Button className={styles.btnHeadgrp}><IoIosArrowForward/></Button>
+               </div>
+           </div>
+           <TableContainer ml='20px' mr='20px' width='100%' border='1px solid #D3D3D3' >
+  <Table variant='striped' size='lg'>
+    
+    <Thead>
+      <Tr>
+        <Th></Th>
         
+        <Th>Mon</Th>
+        
+        <Th >Tue</Th>
+        
+        <Th>Wed</Th>
+        <Th>Thu</Th>
+        <Th >Fri</Th>
+        <Th>Sat</Th>
+        <Th>Sun</Th>
+        
+      </Tr>
+    </Thead>
+    <Tbody>
+      <Tr>
+        <Td>9:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        
+      </Tr>
+      <Tr>
+      <Td>10:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        
+      </Tr>
+      <Tr>
+      <Td>11:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+
+      </Tr>
+      <Tr>
+      <Td>12:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+
+      </Tr>
+      <Tr>
+      <Td>13:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+
+      </Tr>
+      <Tr>
+      <Td>14:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+
+      </Tr>
+      <Tr>
+      <Td>15:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+
+      </Tr>
+      <Tr>
+      <Td>16:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+
+      </Tr>
+    </Tbody>
+    <Tfoot>
+      <Tr>
+      <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+    
+      </Tr>
+    </Tfoot>
+  </Table>
+</TableContainer>
         </div>
         </div>
        </div>

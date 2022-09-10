@@ -1,4 +1,4 @@
-
+import styles from"./ComponentStyle.module.css"
 import React, { useState } from 'react';
 import {  TriangleDownIcon } from '@chakra-ui/icons'
 import {
@@ -30,12 +30,12 @@ const ClientsComponent = ({children}) => {
    
     return (
 
-        <div className="container" >
+        <div className={styles.container} >
 
         
-               <div className="top_section" style={{width : "100%",background:""}}>
-               <div className="blue"></div>
-                   <div style={{marginLeft:"0px"}} className="bars" >
+               <div className={styles.top_section} style={{width : "100%",background:""}}>
+               <div className={styles.blue}></div>
+                   <div style={{marginLeft:"0px"}} className={styles.bars} >
                        <FaBars onClick={toggle}/>
                    </div>
                   <div className="userMenu">
@@ -73,51 +73,51 @@ Harshini Usarthi's...
                     
                  
                </div>
-               <div className="bottomSec" style={{background:""}}>
-                <div className="blue"></div>
-               <div style={{background:"",width: isOpen ? "200px" : "63px"}} className="sidebar" >
+               <div className={styles.bottomSec} style={{background:""}}>
+                <div className={styles.blue}></div>
+               <div style={{background:"",width: isOpen ? "200px" : "63px"}} className={styles.sidebar} >
                {
  
                 <>
                    
-                     <div>  <Link to='/Tracker'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                           <div className="icon"><BsClock/></div>
-                           <div style={{display: isOpen ? "block" : "none"}} className="link_text">TIME TRACKER</div>
+                     <div>  <Link to='/Tracker'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                           <div className={styles.icon}><BsClock/></div>
+                           <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>TIME TRACKER</div>
                        </Link></div>
                      
-                       <div>  <Link to='/Calendar'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><VscCalendar/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">CALENDAR</div>
+                       <div>  <Link to='/Calendar'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><VscCalendar/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>CALENDAR</div>
                  </Link></div>
-                 <div>  <Link to='/Dashboard'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><MdOutlineDashboardCustomize/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">DASHBOARD</div>
+                 <div>  <Link to='/Dashboard'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><MdOutlineDashboardCustomize/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>DASHBOARD</div>
                  </Link></div>
-                 <div>  <Link to='/Reports'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><BsBarChartLine/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">REPORTS</div>
+                 <div>  <Link to='/Reports'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><BsBarChartLine/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>REPORTS</div>
                  </Link></div>
-                 <div>  <Link to='/Projects'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><GrDocumentText/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">PROJECTS</div>
+                 <div>  <Link to='/Projects'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><GrDocumentText/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>PROJECTS</div>
                  </Link></div>
-                 <div>  <Link to='/Teams'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><FiUsers/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">TEAM</div>
+                 <div>  <Link to='/Teams'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><FiUsers/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>TEAM</div>
                  </Link></div>
-                 <div>  <Link to='/Clients'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><HiOutlineUserCircle/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">CLIENTS</div>
+                 <div>  <Link to='/Clients'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><HiOutlineUserCircle/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>CLIENTS</div>
                  </Link></div>
-                 <div>  <Link to='/Tags'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><BsTag/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">TAGS</div>
+                 <div>  <Link to='/Tags'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><BsTag/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>TAGS</div>
                  </Link></div>
-      <div> <Link to='/Settings'  className="link" activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
-                     <div className="icon"><FiSettings/></div>
-                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">SETTINGS</div>
+      <div> <Link to='/Settings'  className={styles.link} activeclassName="active" style={{background:"", width: isOpen ? "200px" : "63px"}}>
+                     <div className={styles.icon}><FiSettings/></div>
+                     <div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>SETTINGS</div>
                  </Link></div>
-                 <div className="link"><button><IoIosArrowDown/></button></div>
+                 <div className={styles.link}><button><IoIosArrowDown/></button></div>
                 
                  </>
                  
@@ -126,7 +126,7 @@ Harshini Usarthi's...
               
               
         </div>
-        <div className="bottomRight">
+        <div className={styles.bottomRight}>
         
         </div>
         </div>

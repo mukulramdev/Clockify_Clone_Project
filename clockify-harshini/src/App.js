@@ -1,5 +1,5 @@
 
-import './App.css';
+import "./App.css"
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Dashboard from './pages/Dashboard';
@@ -12,7 +12,7 @@ import Settings from './pages/Settings';
 import Clients from './pages/Clients';
 import Tags from './pages/Tags';
 
-
+import { Clockify } from "./Components/Clockify";
 
 
 
@@ -26,7 +26,9 @@ function App() {
     
     <div className="App"  >
       
+     
       <Routes>
+      <Route path="/" element={<Clockify/>} />
       <Route path="/Dashboard" element={<Dashboard />} />
       <Route path="/Tracker" element={<Tracker />}  />
       <Route path="/Calendar" element={<Calendar />}   />
@@ -37,7 +39,6 @@ function App() {
       <Route path="/Tags" element={<Tags />}  />
       <Route path="/Settings" element={<Settings />}  />
       </Routes>
-
 
       
 </div>
