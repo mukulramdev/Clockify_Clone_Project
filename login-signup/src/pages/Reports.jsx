@@ -1,5 +1,5 @@
 import React from 'react';
-import ReportsComponent from '../Components/ReportsComponent';
+import ReportsComponent from '../components/ReportsComponent';
 const Reports = () => {
     return (
         <div>
