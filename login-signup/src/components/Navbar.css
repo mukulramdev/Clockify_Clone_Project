@@ -1,0 +1,42 @@
+#mck {
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+}
+#mck>div:nth-child(1){
+  display:flex;
+  justify-content: space-between;
+}
+#mck>div:nth-child(2)>button:nth-child(1),#mck>div:nth-child(1)>button{
+    border:none;
+    background: none;
+    font-size: 22px;
+    margin-left: 40px;
+}
+#mck>div:nth-child(2)>button:nth-child(1):hover,#mck>div:nth-child(1)>button:hover{
+    color:rgb(0, 215, 249);
+    cursor: pointer;
+}
+
+  #mck>div:nth-child(2)>button:nth-child(2){
+    background: none;
+    border: 1px solid rgb(0, 215, 249);
+    height:40px;
+    font-weight: 600;
+    color:rgb(0, 215, 249);
+    
+}
+#mck>div:nth-child(2)>button:nth-child(2):hover{
+  background: rgb(0, 215, 249);
+  border: 1px solid rgb(0, 215, 249);
+  height:40px;
+  font-weight: 600;
+  color:white;
+  cursor: pointer;
+  
+}
+#mck>div:nth-child(2)>button{
+  margin-left: 50px;
+  
+}
+  
