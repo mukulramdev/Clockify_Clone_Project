@@ -1,6 +1,6 @@
 import './App.css'
-import { Signup } from './Components/Signup';
-import {Login} from './Components/Login'
+import { Signup } from './components/Signup';
+import {Login} from './components/Login'
 import Dashboard from './pages/Dashboard';
 import Tracker from './pages/Tracker';
 import Calendar from './pages/Calendar';
@@ -10,10 +10,10 @@ import Projects from './pages/Projects';
 import Settings from './pages/Settings';
 import Clients from './pages/Clients';
 import Tags from './pages/Tags';
-import { Clockify } from './Components/Clockify';
-import { Homepage } from './Components/Feacherpage';
+import { Clockify } from './components/Clockify';
+import { Homepage } from './components/Feacherpage';
 import {Routes, Route} from 'react-router-dom'
-import Download from './Components/Downloads/Download';
+import Download from './components/Downloads/Download';
 
 function App() {
   return (
