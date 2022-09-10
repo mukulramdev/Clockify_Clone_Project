@@ -1,5 +1,5 @@
 import React from 'react';
-import SettingsComponent from '../Components/SettingsComponent';
+import SettingsComponent from '../components/SettingsComponent';
 const Settings = () => {
     return (
        <SettingsComponent/>
