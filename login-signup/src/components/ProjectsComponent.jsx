@@ -5,7 +5,7 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,Center,Divider,Icon,Avatar,Input
+  MenuItem,Center,Divider,Icon,Avatar,Input,Spinner
   
 } from '@chakra-ui/react'
 import { Flex, Spacer ,Box,Button,ButtonGroup,Image,} from '@chakra-ui/react'
@@ -23,33 +23,68 @@ import{GrDocumentText} from "react-icons/gr"
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { setdata, setname } from "../Redux/UserData/Action";
-
-
-const ProjectsComponent = ({children}) => {
+import { Tr,Table,Spindiv} from './Signup_style';
+const ProjectsComponent = () => {
     const[isOpen ,setIsOpen] = useState(false);
     const toggle = () => setIsOpen (!isOpen);
+    const[Load,Setload] = useState(false);
     const [Name, Setname] = useState("");
+    const [tmer,SetTimer] = useState([]);
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
     useEffect(() => {
       Setuser();
     }, []);
+    const SettimerArr = ()=>{
+      Setload(true)
+      const User = JSON.parse(localStorage.getItem("userdata"));
+        fetch(`https://user-data-for-react.herokuapp.com/profile/${User.id}`)
+        .then((res)=>res.json())
+        .then((res)=>{
+          SetTimer(res.Timer)
+          Setload(false)
+        })
+    }
     const Setuser = () => {
       const User = JSON.parse(localStorage.getItem("userdata"));
+      SettimerArr()
       dispatch(setdata(User));
     };
     const Changename = () => {
       dispatch(setname(Name));
-      Setname("");
+      const User = JSON.parse(localStorage.getItem("userdata"));
+      const obj = {
+        name:Name
+      }
+      fetch(`https://user-data-for-react.herokuapp.com/profile/${User.id}`, {
+        method: "PATCH",
+        body: JSON.stringify(obj),
+        headers: { "content-type": "application/json" },
+      }).then(()=>{
+        Setname("");
+      })
+      
     };
     if (user.name !== "NO Name") {
       localStorage.setItem("userdata", JSON.stringify(user));
+    }
+    const PostDataOnserver = (arr)=>{
       const User = JSON.parse(localStorage.getItem("userdata"));
+      const obj = {
+        Timer:arr
+      }
       fetch(`https://user-data-for-react.herokuapp.com/profile/${User.id}`, {
         method: "PATCH",
-        body: JSON.stringify(user),
+        body: JSON.stringify(obj),
         headers: { "content-type": "application/json" },
-      });
+      })  
+    }
+    const handledelete = (ind)=>{
+       const filterdARR = tmer.filter((el,index)=>{
+        return index!==ind
+       })
+       SetTimer(filterdARR);
+       PostDataOnserver(filterdARR);
     }
     return (
 
@@ -157,7 +192,36 @@ const ProjectsComponent = ({children}) => {
               
         </div>
         <div className="bottomRight">
-        
+          {Load ? <Spindiv>
+    <h1>Loading Data please wait</h1>
+    <Spinner
+  thickness='4px'
+  speed='0.65s'
+  emptyColor='gray.200'
+  color='blue.500'
+  size='xl'
+/></Spindiv> : <Table>
+              <thead>
+                <tr>
+                  <th>Sr.</th>
+                  <th>Project Name</th>
+                  <th>Project Time</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+              {tmer.map((el,ind)=><Tr>
+                <td>{ind+1}</td>
+                <td>{el.title}</td>
+                <td>00:00:0{el.time}</td>
+                <td>
+                  <button onClick={()=>{
+                    handledelete(ind);
+                  }}>Delete</button>
+                </td>
+              </Tr>)}
+              </tbody>
+            </Table>}
         </div>
         </div>
        </div>

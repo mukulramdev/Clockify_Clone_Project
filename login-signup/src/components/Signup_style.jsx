@@ -169,6 +169,27 @@ margin-top:30px;
 color:#666666;
 gap:2px;
 `
+const Tr = styled.tr`
+
+text-align:center;
+
+`
+const Table = styled.table`
+  border:2px solid black;
+  width:90%;
+  margin:20px auto;
+  & td{
+    border:2px solid black;
+  },
+  tr{
+    border:2px solid black;
+  }
+`
+const Spindiv = styled.div`
+  display:flex;
+  align-items:center;
+  justify-content: center;
+`
 const Tring = styled(TriangleDownIcon)`
   height:10px;
   width:10px;
@@ -214,4 +235,4 @@ const Loginnewspan = styled.span`
    Background-color:white;
   margin:auto;
 `
-export {Div,Inputdiv,Termdiv,Ordiv,Span,Button,Input,Checkbox,TermSpan,ButtonImg,UlDive,Tring,LoginPhotoDive,LoginSide,Loginnewspan,LoginPagePhoto,Logininputdiv};
+export {Spindiv,Table,Tr,Div,Inputdiv,Termdiv,Ordiv,Span,Button,Input,Checkbox,TermSpan,ButtonImg,UlDive,Tring,LoginPhotoDive,LoginSide,Loginnewspan,LoginPagePhoto,Logininputdiv};

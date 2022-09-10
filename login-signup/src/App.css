@@ -93,6 +93,10 @@ margin: 40px 20px;
   height:50%;
  display: flex;
 }
+.box1>input{
+  padding: 5px 10px;
+  font-weight: 500;
+}
 .inputBox{
   
   

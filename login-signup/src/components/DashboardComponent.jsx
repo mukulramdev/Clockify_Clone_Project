@@ -26,7 +26,7 @@ import {
 import { TiBell } from "react-icons/ti";
 import { VscCalendar } from "react-icons/vsc";
 import { FiUsers, FiSettings } from "react-icons/fi";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown,IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 import { FaBars } from "react-icons/fa";
 
 import { BsTag, BsClock, BsBarChartLine } from "react-icons/bs";
@@ -36,6 +36,8 @@ import { GrDocumentText } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setdata, setname } from "../Redux/UserData/Action";
+import styles from"./ComponentStyle.module.css"
+
 
 const DashboardComponent = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,16 +54,21 @@ const DashboardComponent = ({ children }) => {
   };
   const Changename = () => {
     dispatch(setname(Name));
-    Setname("");
+      const User = JSON.parse(localStorage.getItem("userdata"));
+      const obj = {
+        name:Name
+      }
+      fetch(`https://user-data-for-react.herokuapp.com/profile/${User.id}`, {
+        method: "PATCH",
+        body: JSON.stringify(obj),
+        headers: { "content-type": "application/json" },
+      }).then(()=>{
+        Setname("");
+      })
   };
   if (user.name !== "NO Name") {
     localStorage.setItem("userdata", JSON.stringify(user));
-    const User = JSON.parse(localStorage.getItem("userdata"));
-    fetch(`https://user-data-for-react.herokuapp.com/profile/${User.id}`, {
-      method: "PATCH",
-      body: JSON.stringify(user),
-      headers: { "content-type": "application/json" },
-    });
+   
   }
   return (
     <div className="container">
@@ -331,7 +338,37 @@ const DashboardComponent = ({ children }) => {
             </>
           }
         </div>
-        <div className="bottomRight"></div>
+        <div className={styles.bottomRight}>
+        <div className={styles.btnHead}>
+               <div className={styles.btnHead1}>
+         <h1 style={{fontSize:'26px',color:'grey'}}>Dashboard</h1>
+               </div>
+               <div className={styles.btnHead2}>
+               <Button ml='5px'  className={styles.btnHeadgrp}>Projects<IoIosArrowDown/></Button>
+               <Button ml='5px' mr='5px' className={styles.btnHeadgrp}>Only me<IoIosArrowDown/></Button>
+               <Button className={styles.btnHeadgrp}><VscCalendar/> This week</Button>
+               <Button className={styles.btnHeadgrp}><IoIosArrowBack/></Button>
+               <Button className={styles.btnHeadgrp}><IoIosArrowForward/></Button>
+               </div>
+           </div>
+           <div>
+          
+           <div style={{ width: '80%',margin: "40px 20px",display: 'flex',height: '120px',
+           border:'1px solid #D3D3D3',justifyContent: 'space-between',background:"rgb(217, 217, 218)",
+           }}>
+            <div style={{background:"",width: "33%"}}><h1 style={{ marginTop:'3%'}}>Total Time</h1></div>
+            <div style={{background:"",width: "33%"}}><h1 style={{ marginTop:'3%'}}>Top Project</h1></div>
+            <div style={{background:"",width: "33%"}}><h1 style={{ marginTop:'3%'}}>Top Client</h1></div>
+    
+           </div>
+           
+           <div>
+           <div></div>
+           <div></div>
+           </div>
+           
+           </div>
+        </div>
       </div>
     </div>
   );

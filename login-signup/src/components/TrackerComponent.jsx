@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import { TriangleDownIcon } from "@chakra-ui/icons";
 import {
   Menu,
@@ -9,6 +9,7 @@ import {
   Divider,
   Icon,
   Avatar,
+  PopoverTrigger,PopoverContent,PopoverArrow,Popover,PopoverCloseButton
 } from "@chakra-ui/react";
 import {
   Flex,
@@ -40,34 +41,99 @@ import { BsTag, BsClock, BsBarChartLine } from "react-icons/bs";
 import { TbCurrencyDollar } from "react-icons/tb";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { GrDocumentText } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setdata, setname } from "../Redux/UserData/Action";
-const TrackerComponent = ({ children }) => {
+const TrackerComponent = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [login,setlogin]  = useState(true);
+  let Timercomponent = useRef();
   const toggle = () => setIsOpen(!isOpen);
   const [Name, Setname] = useState("");
   const user = useSelector((state) => state.user);
+  const [timestatus, SettimeStatus] = useState(false);
+  const [start,setStart]  = useState(0);
+  const [title,SetTitle] = useState("");
   const dispatch = useDispatch();
   useEffect(() => {
-    Setuser();
+    Setuser(); 
   }, []);
   const Setuser = () => {
     const User = JSON.parse(localStorage.getItem("userdata"));
-    dispatch(setdata(User));
+    if(User.email){
+      dispatch(setdata(User));
+    }else{
+      setlogin(false)
+      navigate('/')
+    }
   };
   const Changename = () => {
     dispatch(setname(Name));
-    Setname("");
+    const User = JSON.parse(localStorage.getItem("userdata"));
+    const obj = {
+      name:Name
+    }
+    fetch(`https://user-data-for-react.herokuapp.com/profile/${User.id}`, {
+      method: "PATCH",
+      body: JSON.stringify(obj),
+      headers: { "content-type": "application/json" },
+    }).then(()=>{
+      Setname("");
+    })
+    
   };
   if (user.name !== "NO Name") {
     localStorage.setItem("userdata", JSON.stringify(user));
-    const User = JSON.parse(localStorage.getItem("userdata"));
-    fetch(`https://user-data-for-react.herokuapp.com/profile/${User.id}`, {
+  }
+
+  const StartTimer = ()=>{
+        if(title===""){
+          alert("Please Enter title firs")
+          return
+        }
+      
+    if(!timestatus){
+      SettimeStatus(true);
+      Timercomponent.current = setInterval(()=>{
+        setStart(pre=>pre+1);
+     },1000)
+    }  
+  }
+  const handlelogout = ()=>{
+    localStorage.setItem("userdata",JSON.stringify({}));
+    navigate('/')
+  }
+  const Postdata = (curr,timeobj)=>{
+    let obj = {
+      Timer:[...curr.Timer,timeobj]
+    }
+    fetch(`https://user-data-for-react.herokuapp.com/profile/${curr.id}`,{
       method: "PATCH",
-      body: JSON.stringify(user),
+      body: JSON.stringify(obj),
       headers: { "content-type": "application/json" },
-    });
+    })
+    .then(()=>{
+      setStart(0);
+      SetTitle("");
+   })
+  }
+  const StopTimer = ()=>{
+    clearInterval(Timercomponent.current);
+     const User = JSON.parse(localStorage.getItem("userdata"));
+     fetch(`https://user-data-for-react.herokuapp.com/profile/${User.id}`)
+     .then((res)=>res.json())
+     .then((res)=>{
+      let timeobj = {
+        title,
+        time:start
+      }
+      Postdata(res,timeobj)
+     })
+     SettimeStatus(false);
+  }
+  const handlechange = (e)=>{
+    SetTitle(e.target.value);
   }
   return (
     <div className="container">
@@ -142,7 +208,18 @@ const TrackerComponent = ({ children }) => {
                 <Divider orientation="vertical" />
                 <Button bg="white" _hover="bg:white" width="60px">
                   {" "}
-                  <Avatar name={user.name} size="sm" src="" />{" "}
+
+                  <Popover>
+  <PopoverTrigger>
+  <Avatar name={user.name} size="sm" src="" />
+  </PopoverTrigger>
+  <PopoverContent>
+    <PopoverArrow />
+    <PopoverCloseButton />
+    <Button onClick={handlelogout}>Logout</Button>
+  </PopoverContent>
+</Popover>
+                  {" "}
                 </Button>
               </Center>
             </ButtonGroup>
@@ -344,6 +421,8 @@ const TrackerComponent = ({ children }) => {
                 type="text"
                 className="inputBox"
                 placeholder="What are you working on?"
+                onChange={handlechange}
+                value={title}
               />
               <Button
                 colorScheme="blue"
@@ -381,9 +460,10 @@ const TrackerComponent = ({ children }) => {
                 <div
                   style={{ width: "", marginTop: "10px", marginLeft: "10px" }}
                 >
-                  <strong>00:00:00</strong>
+                  <strong>00:00:0{start}</strong>
                 </div>
-                <Button
+                {
+                  timestatus ? <Button
                   bg="#03A9F4"
                   variant="solid"
                   fontSize="13px"
@@ -393,9 +473,25 @@ const TrackerComponent = ({ children }) => {
                   borderRadius="5px"
                   w="4%"
                   color="white"
+                  onClick={StopTimer}
                 >
-                  Start
-                </Button>
+                  Stop
+                </Button> : 
+                <Button
+                bg="#03A9F4"
+                variant="solid"
+                fontSize="13px"
+                size="xs"
+                mt="12px"
+                ml="20px"
+                borderRadius="5px"
+                w="4%"
+                color="white"
+                onClick={StartTimer}
+              >
+                Start
+              </Button>
+                }
                 <Menu>
                   <MenuButton
                     bg=""

@@ -40,16 +40,21 @@ const ReportsComponent = ({children}) => {
     };
     const Changename = () => {
       dispatch(setname(Name));
-      Setname("");
+      const User = JSON.parse(localStorage.getItem("userdata"));
+      const obj = {
+        name:Name
+      }
+      fetch(`https://user-data-for-react.herokuapp.com/profile/${User.id}`, {
+        method: "PATCH",
+        body: JSON.stringify(obj),
+        headers: { "content-type": "application/json" },
+      }).then(()=>{
+        Setname("");
+      })
     };
     if (user.name !== "NO Name") {
       localStorage.setItem("userdata", JSON.stringify(user));
-      const User = JSON.parse(localStorage.getItem("userdata"));
-      fetch(`https://user-data-for-react.herokuapp.com/profile/${User.id}`, {
-        method: "PATCH",
-        body: JSON.stringify(user),
-        headers: { "content-type": "application/json" },
-      });
+      
     }
     return (
 
