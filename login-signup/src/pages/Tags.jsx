@@ -1,5 +1,5 @@
 import React from 'react';
-import TagsComponent from '../Components/TagsComponent';
+import TagsComponent from '../components/TagsComponent';
 const Tags = () => {
     return (
        <TagsComponent/>
