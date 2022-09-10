@@ -1,5 +1,5 @@
 import React from 'react';
-import TeamsComponent from '../Components/TeamsComponent';
+import TeamsComponent from '../components/TeamsComponent';
 const Teams = () => {
     return (
         <TeamsComponent/>
