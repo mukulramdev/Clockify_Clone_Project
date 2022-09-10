@@ -1,7 +1,6 @@
-import { Set_time, Reset_time } from "./Actiontype";
+import { Set_time } from "./Actiontype";
 const initstate = {
-    second:0,
-    minute:0
+    Timer:[]
 }
 
 
@@ -10,15 +9,7 @@ export const Timereducer = (state = initstate, {type,payload})=>{
         case Set_time:{
             return{
                 ...state,
-                second:payload.second,
-                minute:payload.minute
-            }
-        }
-        case Reset_time:{
-            return{
-                ...state,
-                second:0,
-                minute:0
+                second:payload
             }
         }
         default:{

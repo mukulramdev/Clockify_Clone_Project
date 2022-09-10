@@ -5,15 +5,23 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,Center,Divider,Icon,Avatar,Input
-  
+  MenuItem,Center,Divider,Icon,Avatar,Input,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+  Table
 } from '@chakra-ui/react'
 import { Flex, Spacer ,Box,Button,ButtonGroup,Image,} from '@chakra-ui/react'
 import {  HiOutlineQuestionMarkCircle,HiOutlineUserCircle} from 'react-icons/hi'
 import {  TiBell} from 'react-icons/ti'
 import{VscCalendar} from 'react-icons/vsc'
 import {FiUsers,FiSettings} from 'react-icons/fi'
-import {IoIosArrowDown} from 'react-icons/io'
+import {IoIosArrowDown,IoIosArrowBack,IoIosArrowForward} from 'react-icons/io'
 import {FaBars} from 'react-icons/fa'
 
 import {BsTag, BsClock,BsBarChartLine} from "react-icons/bs"; 
@@ -23,7 +31,7 @@ import{GrDocumentText} from "react-icons/gr"
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { setdata, setname } from "../Redux/UserData/Action";
-
+import styles from"./ComponentStyle.module.css"
 
 const CalendarComponent = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
@@ -40,16 +48,20 @@ const CalendarComponent = ({children}) => {
     };
     const Changename = () => {
       dispatch(setname(Name));
-      Setname("");
+      const User = JSON.parse(localStorage.getItem("userdata"));
+      const obj = {
+        name:Name
+      }
+      fetch(`https://user-data-for-react.herokuapp.com/profile/${User.id}`, {
+        method: "PATCH",
+        body: JSON.stringify(obj),
+        headers: { "content-type": "application/json" },
+      }).then(()=>{
+        Setname("");
+      })
     };
     if (user.name !== "NO Name") {
       localStorage.setItem("userdata", JSON.stringify(user));
-      const User = JSON.parse(localStorage.getItem("userdata"));
-      fetch(`https://user-data-for-react.herokuapp.com/profile/${User.id}`, {
-        method: "PATCH",
-        body: JSON.stringify(user),
-        headers: { "content-type": "application/json" },
-      });
     }
     return (
 
@@ -156,8 +168,145 @@ const CalendarComponent = ({children}) => {
               
               
         </div>
-        <div className="bottomRight">
+        <div className={styles.bottomRight}>
+           <div className={styles.btnHead}>
+               <div className={styles.btnHead1}>
+                <Button className={styles.btnHeadgrp}>Calendar</Button>
+                <Button className={styles.btnHeadgrp}>Week</Button>
+                <Button className={styles.btnHeadgrp}>Day</Button>
+               </div>
+               <div className={styles.btnHead2}>
+               <Button className={styles.btnHeadgrp}><FiSettings/></Button>
+               <Button className={styles.btnHeadgrp}>Teammates</Button>
+               <Button className={styles.btnHeadgrp}><VscCalendar/>This week</Button>
+               <Button className={styles.btnHeadgrp}><IoIosArrowBack/></Button>
+               <Button className={styles.btnHeadgrp}><IoIosArrowForward/></Button>
+               </div>
+           </div>
+           <TableContainer ml='20px' mr='20px' width='100%' border='1px solid #D3D3D3' >
+  <Table variant='striped' size='lg'>
+    
+    <Thead>
+      <Tr>
+        <Th></Th>
         
+        <Th>Mon</Th>
+        
+        <Th >Tue</Th>
+        
+        <Th>Wed</Th>
+        <Th>Thu</Th>
+        <Th >Fri</Th>
+        <Th>Sat</Th>
+        <Th>Sun</Th>
+        
+      </Tr>
+    </Thead>
+    <Tbody>
+      <Tr>
+        <Td>9:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        
+      </Tr>
+      <Tr>
+      <Td>10:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        
+      </Tr>
+      <Tr>
+      <Td>11:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+
+      </Tr>
+      <Tr>
+      <Td>12:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+
+      </Tr>
+      <Tr>
+      <Td>13:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+
+      </Tr>
+      <Tr>
+      <Td>14:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+
+      </Tr>
+      <Tr>
+      <Td>15:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+
+      </Tr>
+      <Tr>
+      <Td>16:00</Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+
+      </Tr>
+    </Tbody>
+    <Tfoot>
+      <Tr>
+      <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+        <Td ></Td>
+        <Td></Td>
+        <Td></Td>
+    
+      </Tr>
+    </Tfoot>
+  </Table>
+</TableContainer>
         </div>
         </div>
        </div>
