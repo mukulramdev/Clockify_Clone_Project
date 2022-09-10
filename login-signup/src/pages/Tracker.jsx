@@ -1,5 +1,5 @@
 import React from 'react';
-import TrackerComponent from '../Components/TrackerComponent';
+import TrackerComponent from '../components/TrackerComponent';
 const Tracker = () => {
     return (
         <div>
