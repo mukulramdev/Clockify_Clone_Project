@@ -1,0 +1,160 @@
+*{
+    margin:0;
+    padding:0;
+    text-decoration: none;
+    font-family: Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";
+  }
+  .container{
+   
+  height: 100vh;
+  }
+  main{
+    width: 100%;
+    padding: 20px;
+  }
+  .sidebar{
+    background: white;
+    color: gray;
+    border: 1px solid #D3D3D3;
+    width: 200px;
+    transition: all 0.5s;
+    height: 100%;
+  }
+  .top_section{
+    display: flex;
+    align-items:center;
+   border: 1px solid #D3D3D3;
+    height: 50PX;
+    width: 100%;
+    
+  }
+  .logo{
+    font-size: 30px;
+  }
+  .bars{
+    
+    font-size: 25px;
+   padding: 15px;
+   color: #343a40;;
+  }
+  .link{
+    display: flex;
+    color: #343a40;;
+    padding: 15px 15px;
+    gap: 15px;
+    transition: all 0.5s;
+    height: 50px;
+    
+  }
+  .link:hover{
+    background:rgb(217, 217, 218);
+    color: #000;
+    transition: all 0.5s;
+  }
+  .active{
+    background: lightskyblue;
+    color: #000;
+  }
+   .link_text{
+    font-size: 15px;
+    
+    color: #000;
+   
+  }
+  .icon{
+    font-size: 20px;
+    margin-top: 2px;
+    
+  }
+  
+  .navmenu{
+    display: flex;
+    background-color: blueviolet;
+    margin-left: 20px;
+  }
+  .userMenu{
+    width:100%;
+  }
+  .bottomSec{
+    height: 91%;
+    display: flex;
+    
+  }
+  .boxes{
+    border: 1px solid #D3D3D3;
+    height: 120px;
+  width: 100%;
+  margin: 40px 20px;
+  }
+  
+ 
+  .box1{
+    border-bottom: 1px solid #D3D3D3;
+    height:50%;
+   display: flex;
+
+  }
+  .inputBox{
+
+    margin: 12px ;
+    width: 900px;
+    height: 33px;
+    padding-left: 20px; /* added  */
+  }
+  .btngrp{
+    color: aqua;
+    margin-top: 5px;
+  }
+  .dashboard{
+    display: block;
+  }
+  .icongrp{
+    font-size: 25px;
+    color: gray;
+    
+  }
+  .blue{
+    width: 5px;
+    background-color: #03A9F4;
+  }
+  .bottomRight{
+    display: flex;
+    flex-direction: column;
+    width: 91%;
+  }
+  .iconBox{
+    display: flex;
+    color: #949494;
+    font-size: 28px;
+    justify-content: space-between;
+    width: 40%;
+    margin-left: 25%;
+  } /* added */
+  .boxestodo{
+  border: 1px solid #D3D3D3;
+  height: 60px;
+width: 100%;
+margin: 0px 20px;
+}
+.thisweek{
+  background:rgb(217, 217, 218);
+  border: 1px solid #D3D3D3;
+  height: 30px;
+width: 100%;
+margin: 0px 20px;
+text-align: left;
+padding-left: 20px;
+}
+
+.btnHead{
+  display: flex;
+  justify-content: space-between;
+  
+    
+  width: 100%;
+  margin: 40px 20px;
+}
+.btnHeadgrp{
+  border: 1px solid #D3D3D3;
+  border-radius: 0;
+}
